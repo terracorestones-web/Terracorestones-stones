@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Terracore Stones — Natural Stone for Interior Design & Architecture</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --sand:  #c8a882; --rust: #9e5a34; --cream: #f5f0e8;
+      --stone: #1e1a16; --mid: #7a6654;  --brass: #b8913a;
+      --deep:  #130f0c;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family:'Jost',sans-serif; background:var(--stone); color:var(--cream); overflow-x:hidden; }
+    body::before {
+      content:''; position:fixed; inset:0; z-index:0; pointer-events:none;
+      background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+      opacity:.4;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position:fixed; top:0; left:0; right:0; z-index:200;
+      display:flex; align-items:center; justify-content:space-between;
+      padding:1.2rem 3.5rem;
+      background:linear-gradient(to bottom,rgba(19,15,12,.96) 0%,rgba(19,15,12,0) 100%);
+      transition:background .4s;
+    }
+    nav.scrolled { background:rgba(19,15,12,.97); border-bottom:1px solid rgba(200,168,130,.08); }
+
+    /* ─── ARTISTIC LOGO ─── */
+    .logo-mark { display:block; }
+    .logo-wrap { display:flex; align-items:center; gap:1rem; text-decoration:none; }
+    .logo-text-block { display:flex; flex-direction:column; gap:2px; }
+    .logo-text-block .l1 { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:1.05rem; letter-spacing:.34em; color:var(--cream); line-height:1; }
+    .logo-text-block .l2 { font-family:'Jost',sans-serif; font-weight:200; font-size:.5rem; letter-spacing:.55em; color:var(--sand); }
+
+    .nav-links { display:flex; gap:2.4rem; list-style:none; }
+    .nav-links a { color:var(--cream); text-decoration:none; font-size:.68rem; letter-spacing:.22em; font-weight:300; opacity:.75; transition:opacity .2s,color .2s; }
+    .nav-links a:hover { opacity:1; color:var(--sand); }
+
+    /* ─── HERO ─── */
+    .hero {
+      position:relative; height:100vh;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      text-align:center; overflow:hidden;
+    }
+    .hero-bg {
+      position:absolute; inset:0;
+      background:linear-gradient(160deg,#6b3a24 0%,#3d2416 28%,#1a1210 58%,#0d1a1a 100%);
+    }
+    .hero-bg::after {
+      content:''; position:absolute; inset:0;
+      background:repeating-linear-gradient(-18deg,transparent 0,rgba(200,168,130,.035) 1px,transparent 2px,transparent 90px);
+    }
+    .hero-overlay { position:absolute; inset:0; background:radial-gradient(ellipse at center,rgba(0,0,0,0) 25%,rgba(0,0,0,.6) 100%); }
+    .hero-content { position:relative; z-index:2; }
+
+    /* Hero artistic logo — large */
+    .hero-logo { margin-bottom:2rem; display:inline-block; animation:fadeUp .9s ease both; }
+
+    .hero h1 {
+      font-family:'Cormorant Garamond',serif; font-weight:300;
+      font-size:clamp(3.2rem,7.5vw,6.8rem); letter-spacing:.22em; color:var(--cream);
+      animation:fadeUp .9s .12s ease both;
+    }
+    .hero-rule { display:flex; align-items:center; gap:1.1rem; margin-top:.4rem; animation:fadeUp .9s .22s ease both; justify-content:center; }
+    .hero-rule .ln { width:48px; height:1px; background:var(--sand); }
+    .hero-rule span { font-size:.62rem; letter-spacing:.42em; color:var(--sand); font-weight:300; }
+    .hero-tagline { font-size:.85rem; letter-spacing:.1em; font-weight:200; max-width:440px; margin:2rem auto 0; line-height:2.1; opacity:.72; animation:fadeUp .9s .32s ease both; }
+    .hero-cta { display:inline-block; margin-top:2.5rem; border:1px solid var(--sand); color:var(--sand); padding:.82rem 2.6rem; font-size:.65rem; letter-spacing:.32em; text-decoration:none; font-weight:300; transition:background .3s,color .3s; animation:fadeUp .9s .44s ease both; }
+    .hero-cta:hover { background:var(--sand); color:var(--stone); }
+    .hero-scroll { position:absolute; bottom:2.2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:.5rem; opacity:.45; animation:fadeUp .9s .6s ease both; }
+    .hero-scroll span { font-size:.55rem; letter-spacing:.32em; }
+    .scroll-bar { width:1px; height:38px; background:var(--sand); animation:scrollPulse 2.2s infinite; }
+
+    /* ─── SHARED ─── */
+    section { position:relative; z-index:1; }
+    .pad { padding:7rem 4rem; }
+    .s-label { font-size:.58rem; letter-spacing:.45em; color:var(--sand); font-weight:400; margin-bottom:.9rem; }
+    .s-title { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(1.9rem,3.8vw,3rem); line-height:1.18; letter-spacing:.05em; }
+    .divider { width:46px; height:1px; background:var(--sand); margin:1.5rem 0; }
+    .divider.c { margin:1.5rem auto; }
+
+    /* ─── ABOUT ─── */
+    .about { background:#191410; display:grid; grid-template-columns:1fr 1fr; gap:6rem; align-items:center; }
+    .about-text p { font-size:.86rem; line-height:2.15; opacity:.76; font-weight:200; }
+    .about-text p+p { margin-top:1.1rem; }
+    .about-stats { display:grid; grid-template-columns:1fr 1fr; gap:1.8rem; margin-top:2.8rem; }
+    .stat { border-left:1px solid rgba(200,168,130,.28); padding-left:1.1rem; }
+    .stat .num { font-family:'Cormorant Garamond',serif; font-size:2.3rem; font-weight:300; color:var(--sand); }
+    .stat .lbl { font-size:.58rem; letter-spacing:.2em; opacity:.55; margin-top:.25rem; }
+    .about-visual { position:relative; height:480px; }
+    .ab-card { position:absolute; border:1px solid rgba(200,168,130,.22); }
+    .ab-card:nth-child(1) { inset:0 70px 90px 0; background:rgba(30,20,14,.6); }
+    .ab-card:nth-child(2) { top:90px; left:70px; right:0; bottom:0; background:rgba(158,90,52,.1); border-color:rgba(200,168,130,.38); padding:2rem; display:flex; align-items:center; }
+    .ab-quote { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-style:italic; font-weight:300; line-height:1.75; }
+
+    /* ─── PORTFOLIO ─── */
+    .portfolio { background:var(--stone); }
+    .port-header { text-align:center; padding:7rem 4rem 3rem; }
+    .port-grid { padding:0 2rem 7rem; }
+    .masonry { column-count:3; column-gap:1.1rem; }
+    .gi { break-inside:avoid; margin-bottom:1.1rem; position:relative; overflow:hidden; cursor:pointer; border:1px solid rgba(200,168,130,.07); }
+    .gi:hover .go { opacity:1; }
+    .gi:hover .gi-bg { transform:scale(1.05); }
+    .gi-bg { width:100%; display:block; transition:transform .65s cubic-bezier(.25,.46,.45,.94); }
+    .go { position:absolute; inset:0; background:linear-gradient(to top,rgba(19,10,6,.94) 0%,rgba(19,10,6,.18) 55%,transparent 100%); display:flex; align-items:flex-end; padding:1.6rem; opacity:0; transition:opacity .4s; }
+    .gtag { display:inline-block; font-size:.54rem; letter-spacing:.28em; color:var(--sand); border:1px solid var(--sand); padding:.28rem .7rem; margin-bottom:.5rem; }
+    .gtitle { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-weight:300; line-height:1.3; }
+    .gi.wide { column-span:all; }
+
+    /* ─── SERVICES ─── */
+    .services { background:#141009; }
+    .srv-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(200,168,130,.13); }
+    .srv-card { background:#141009; padding:2.6rem 2rem; border-bottom:2px solid transparent; transition:border-color .3s,background .3s; }
+    .srv-card:hover { background:rgba(200,168,130,.04); border-bottom-color:var(--sand); }
+    .srv-num { font-family:'Cormorant Garamond',serif; font-size:2.8rem; font-weight:300; color:rgba(200,168,130,.2); line-height:1; margin-bottom:1.1rem; }
+    .srv-name { font-size:.7rem; letter-spacing:.22em; font-weight:400; margin-bottom:.9rem; }
+    .srv-desc { font-size:.8rem; line-height:1.95; opacity:.58; font-weight:200; }
+
+    /* ─── CONSULTANT ─── */
+    .consultant { background:var(--stone); display:grid; grid-template-columns:1fr 1fr; }
+    .con-img { background:linear-gradient(135deg,#2a1a10,#1a1210); display:flex; align-items:center; justify-content:center; min-height:580px; }
+    .con-portrait { position:relative; width:260px; }
+    .con-portrait-frame { border:1px solid rgba(200,168,130,.3); padding:2rem; position:relative; }
+    .con-portrait-frame::before { content:''; position:absolute; top:-8px; left:-8px; right:8px; bottom:8px; border:1px solid rgba(200,168,130,.12); pointer-events:none; }
+    .con-portrait-frame::after { content:''; position:absolute; bottom:0; left:20%; right:20%; height:2px; background:linear-gradient(to right,transparent,var(--brass),transparent); }
+    .con-name { font-family:'Cormorant Garamond',serif; font-size:1.35rem; font-weight:400; letter-spacing:.08em; margin-top:1.4rem; text-align:center; }
+    .con-role { font-size:.58rem; letter-spacing:.3em; color:var(--sand); opacity:.8; margin-top:.3rem; text-align:center; }
+    .con-text { padding:7rem 5rem; background:#191410; display:flex; flex-direction:column; justify-content:center; }
+    .con-text p { font-size:.87rem; line-height:2.1; opacity:.76; font-weight:200; }
+    .con-text p+p { margin-top:1.1rem; }
+    .badges { display:flex; flex-wrap:wrap; gap:.7rem; margin-top:2.4rem; }
+    .badge { font-size:.58rem; letter-spacing:.2em; border:1px solid rgba(200,168,130,.32); padding:.45rem 1rem; color:var(--sand); }
+
+    /* ─── SOCIAL SECTION ─── */
+    .social-section { background:#0e0b08; padding:5rem 4rem; }
+    .social-inner { max-width:900px; margin:0 auto; }
+    .social-header { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:3rem; }
+    .social-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1.5rem; }
+
+    .social-card {
+      position:relative; border:1px solid rgba(200,168,130,.12);
+      padding:2.2rem 2rem; text-decoration:none; color:var(--cream);
+      display:flex; flex-direction:column; gap:1rem;
+      transition:border-color .35s, background .35s, transform .35s;
+      overflow:hidden;
+      background:#13100d;
+    }
+    .social-card::before {
+      content:''; position:absolute; bottom:0; left:0; right:0; height:2px;
+      transform:scaleX(0); transform-origin:left;
+      transition:transform .4s cubic-bezier(.25,.46,.45,.94);
+    }
+    .social-card:hover { transform:translateY(-4px); border-color:rgba(200,168,130,.35); }
+    .social-card:hover::before { transform:scaleX(1); }
+
+    /* Instagram */
+    .social-card.ig::before { background:linear-gradient(to right,#f9ce34,#ee2a7b,#6228d7); }
+    .social-card.ig:hover { background:linear-gradient(135deg,rgba(249,206,52,.05),rgba(238,42,123,.06),rgba(98,40,215,.05)); }
+    /* WhatsApp */
+    .social-card.wa::before { background:linear-gradient(to right,#25d366,#128c7e); }
+    .social-card.wa:hover { background:rgba(37,211,102,.05); }
+    /* Threads */
+    .social-card.th::before { background:linear-gradient(to right,#a0a0a0,#ffffff); }
+    .social-card.th:hover { background:rgba(200,200,200,.04); }
+
+    .social-icon { width:42px; height:42px; }
+    .social-platform { font-size:.6rem; letter-spacing:.3em; color:var(--sand); font-weight:400; }
+    .social-handle { font-family:'Cormorant Garamond',serif; font-size:1.4rem; font-weight:300; line-height:1.2; }
+    .social-desc { font-size:.75rem; line-height:1.8; opacity:.55; font-weight:200; }
+    .social-arrow {
+      position:absolute; top:2rem; right:2rem;
+      width:28px; height:28px; border:1px solid rgba(200,168,130,.2); border-radius:50%;
+      display:flex; align-items:center; justify-content:center;
+      opacity:0; transition:opacity .3s;
+    }
+    .social-card:hover .social-arrow { opacity:1; }
+    .social-arrow svg { width:12px; }
+
+    /* Edit links bar */
+    .social-edit-bar { margin-top:2rem; padding:1.2rem 1.6rem; background:rgba(200,168,130,.04); border:1px dashed rgba(200,168,130,.18); display:flex; align-items:center; gap:1rem; flex-wrap:wrap; }
+    .social-edit-bar p { font-size:.68rem; letter-spacing:.1em; opacity:.5; font-weight:200; }
+    .edit-btn { font-size:.6rem; letter-spacing:.2em; border:1px solid rgba(200,168,130,.3); padding:.4rem .9rem; color:var(--sand); cursor:pointer; background:transparent; transition:background .2s; font-family:'Jost',sans-serif; }
+    .edit-btn:hover { background:rgba(200,168,130,.1); }
+
+    /* Modal */
+    .modal-overlay { position:fixed; inset:0; background:rgba(13,10,8,.88); z-index:300; display:none; align-items:center; justify-content:center; }
+    .modal-overlay.open { display:flex; }
+    .modal { background:#1e1a16; border:1px solid rgba(200,168,130,.25); padding:2.8rem; width:100%; max-width:520px; position:relative; }
+    .modal h3 { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:300; letter-spacing:.06em; margin-bottom:.5rem; }
+    .modal-sub { font-size:.72rem; opacity:.55; letter-spacing:.1em; margin-bottom:2rem; font-weight:200; }
+    .modal-close { position:absolute; top:1.2rem; right:1.5rem; background:none; border:none; color:var(--cream); font-size:1.4rem; cursor:pointer; opacity:.5; transition:opacity .2s; }
+    .modal-close:hover { opacity:1; }
+    .field-group { margin-bottom:1.4rem; }
+    .field-group label { display:block; font-size:.6rem; letter-spacing:.25em; color:var(--sand); margin-bottom:.5rem; }
+    .field-group input { width:100%; background:rgba(255,255,255,.04); border:1px solid rgba(200,168,130,.2); color:var(--cream); padding:.75rem 1rem; font-family:'Jost',sans-serif; font-size:.82rem; outline:none; transition:border-color .2s; }
+    .field-group input:focus { border-color:var(--sand); }
+    .field-group input::placeholder { opacity:.3; }
+    .modal-save { width:100%; border:1px solid var(--sand); background:transparent; color:var(--sand); padding:.82rem; font-family:'Jost',sans-serif; font-size:.68rem; letter-spacing:.28em; cursor:pointer; transition:background .3s,color .3s; margin-top:.5rem; }
+    .modal-save:hover { background:var(--sand); color:var(--stone); }
+
+    /* ─── CONTACT ─── */
+    .contact {
+      position:relative; overflow:hidden;
+      background:linear-gradient(160deg,#6b3a24 0%,#3d2416 38%,#1a1210 100%);
+      padding:9rem 4rem; text-align:center;
+    }
+    .contact::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(-18deg,transparent 0,rgba(200,168,130,.04) 1px,transparent 2px,transparent 90px); }
+    .contact-inner { position:relative; z-index:1; max-width:680px; margin:0 auto; }
+    .contact h2 { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(2.4rem,5vw,4rem); letter-spacing:.1em; margin-bottom:.9rem; }
+    .contact-sub { font-size:.8rem; letter-spacing:.1em; opacity:.65; font-weight:200; margin-bottom:2.8rem; }
+    .contact-links { display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; }
+    .clink { display:flex; align-items:center; gap:.7rem; border:1px solid rgba(200,168,130,.45); padding:.9rem 2rem; text-decoration:none; color:var(--cream); font-size:.68rem; letter-spacing:.2em; font-weight:300; transition:background .3s,border-color .3s; }
+    .clink:hover { background:rgba(200,168,130,.1); border-color:var(--sand); }
+    .clink svg { width:15px; opacity:.7; }
+
+    /* ─── FOOTER ─── */
+    footer { background:#0a0806; padding:2rem 4rem; display:flex; align-items:center; justify-content:space-between; border-top:1px solid rgba(200,168,130,.08); }
+    footer .fl { display:flex; align-items:center; gap:.8rem; }
+    footer p { font-size:.6rem; letter-spacing:.18em; opacity:.38; }
+
+    /* ─── ANIMATIONS ─── */
+    @keyframes fadeUp { from{opacity:0;transform:translateY(26px)} to{opacity:1;transform:translateY(0)} }
+    @keyframes scrollPulse { 0%,100%{opacity:.5;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.35)} }
+    @keyframes spin { to{transform:rotate(360deg)} }
+    @keyframes shimmer { 0%,100%{opacity:.6} 50%{opacity:1} }
+
+    .reveal { opacity:0; transform:translateY(28px); transition:opacity .75s ease,transform .75s ease; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* ─── RESPONSIVE ─── */
+    @media(max-width:900px){
+      nav{padding:1rem 1.6rem;} .nav-links{display:none;}
+      .pad{padding:4rem 1.6rem;}
+      .about{grid-template-columns:1fr;gap:3rem;} .about-visual{display:none;}
+      .srv-grid{grid-template-columns:1fr;}
+      .consultant{grid-template-columns:1fr;} .con-img{min-height:260px;} .con-text{padding:3rem 1.6rem;}
+      .social-grid{grid-template-columns:1fr;}
+      .masonry{column-count:2;}
+      footer{flex-direction:column;gap:.7rem;text-align:center;}
+    }
+    @media(max-width:560px){ .masonry{column-count:1;} }
+  </style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav id="nav">
+  <a class="logo-wrap" href="#hero">
+    <!-- LOGO MARK: T-arch monogram — stone arch with layered strata base -->
+    <svg class="logo-mark" width="40" height="44" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="nlg" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%"   stop-color="#dfc48a"/>
+          <stop offset="100%" stop-color="#9a7038"/>
+        </linearGradient>
+      </defs>
+      <!-- Arch — gateway / portal shape suggesting global reach -->
+      <path d="M6 38 L6 18 Q6 6 20 6 Q34 6 34 18 L34 38" stroke="url(#nlg)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <!-- Inner arch echo — depth layer -->
+      <path d="M11 38 L11 19.5 Q11 11 20 11 Q29 11 29 19.5 L29 38" stroke="url(#nlg)" stroke-width=".7" fill="none" opacity=".45" stroke-linecap="round"/>
+      <!-- Strata base lines — 3 geological layers -->
+      <line x1="3"  y1="38" x2="37" y2="38" stroke="url(#nlg)" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="6"  y1="41.5" x2="34" y2="41.5" stroke="url(#nlg)" stroke-width=".9" opacity=".55" stroke-linecap="round"/>
+      <line x1="10" y1="44"   x2="30" y2="44"   stroke="url(#nlg)" stroke-width=".5" opacity=".28" stroke-linecap="round"/>
+      <!-- Crown accent dot — the keystone -->
+      <circle cx="20" cy="6" r="2" fill="url(#nlg)"/>
+    </svg>
+    <div class="logo-text-block">
+      <span class="l1">TERRACORE</span>
+      <span class="l2">STONES</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#portfolio">Portfolio</a></li>
+    <li><a href="#services">Expertise</a></li>
+    <li><a href="#consultant">About</a></li>
+    <li><a href="#social">Connect</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ─── HERO ─── -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <!-- HERO ARTISTIC LOGO -->
+    <div class="hero-logo">
+      <!-- HERO LOGO MARK: large arch — keystone / gateway / strata -->
+      <svg width="96" height="104" viewBox="0 0 96 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="hlg" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#f0d8a0"/>
+            <stop offset="55%"  stop-color="#c8a060"/>
+            <stop offset="100%" stop-color="#8a6028"/>
+          </linearGradient>
+          <linearGradient id="hlg2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%"   stop-color="#dfc48a" stop-opacity=".5"/>
+            <stop offset="100%" stop-color="#9a7038" stop-opacity=".15"/>
+          </linearGradient>
+          <filter id="hglow">
+            <feGaussianBlur stdDeviation="2" result="b"/>
+            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+        </defs>
+        <!-- Outermost ghost arch — atmosphere -->
+        <path d="M4 90 L4 40 Q4 4 48 4 Q92 4 92 40 L92 90" stroke="url(#hlg2)" stroke-width="1" fill="none" stroke-linecap="round"/>
+        <!-- Main arch -->
+        <path d="M12 90 L12 42 Q12 14 48 14 Q84 14 84 42 L84 90" stroke="url(#hlg)" stroke-width="2" fill="none" stroke-linecap="round" filter="url(#hglow)"/>
+        <!-- Inner arch echo -->
+        <path d="M22 90 L22 44.5 Q22 24 48 24 Q74 24 74 44.5 L74 90" stroke="url(#hlg)" stroke-width=".9" fill="none" opacity=".4" stroke-linecap="round"/>
+        <!-- Strata base — three geological layers -->
+        <line x1="6"  y1="90"  x2="90" y2="90"  stroke="url(#hlg)" stroke-width="2"   stroke-linecap="round"/>
+        <line x1="12" y1="96"  x2="84" y2="96"  stroke="url(#hlg)" stroke-width="1.2" opacity=".5"  stroke-linecap="round"/>
+        <line x1="22" y1="101" x2="74" y2="101" stroke="url(#hlg)" stroke-width=".7"  opacity=".25" stroke-linecap="round"/>
+        <!-- Keystone crown dot -->
+        <circle cx="48" cy="14" r="4" fill="url(#hlg)" filter="url(#hglow)"/>
+        <circle cx="48" cy="14" r="1.6" fill="#fff8e8"/>
+      </svg>
+    </div>
+
+    <h1>TERRACORE</h1>
+    <div class="hero-rule">
+      <span class="ln"></span><span>STONES</span><span class="ln"></span>
+    </div>
+    <p class="hero-tagline">Natural Stones for Interior Design &amp; Architecture.<br/>Sourced from Rajasthan. Crafted for the world.</p>
+    <a href="#portfolio" class="hero-cta">VIEW PORTFOLIO</a>
+  </div>
+  <div class="hero-scroll">
+    <span>SCROLL</span>
+    <div class="scroll-bar"></div>
+  </div>
+</section>
+
+<!-- ─── ABOUT ─── -->
+<section class="about pad" id="about">
+  <div class="about-text reveal">
+    <p class="s-label">About Terracore</p>
+    <h2 class="s-title">Where Earth Becomes<br/><em>Art</em></h2>
+    <div class="divider"></div>
+    <p>Terracore Stones is a premium natural stone atelier sourcing the finest sandstones, limestones, and marbles directly from Rajasthan and across India's most storied geological regions.</p>
+    <p>We work alongside architects and interior designers globally — from concept to execution — delivering customised stone solutions for pools, wall cladding, artistic panels, flooring, and statement tabletops across India and Mauritius.</p>
+    <div class="about-stats">
+      <div class="stat"><div class="num">15+</div><div class="lbl">YEARS IN THE TRADE</div></div>
+      <div class="stat"><div class="num">2</div><div class="lbl">COUNTRIES — INDIA &amp; MAURITIUS</div></div>
+      <div class="stat"><div class="num">60+</div><div class="lbl">STONE VARIETIES</div></div>
+      <div class="stat"><div class="num">∞</div><div class="lbl">CUSTOM POSSIBILITIES</div></div>
+    </div>
+  </div>
+  <div class="about-visual reveal">
+    <div class="ab-card"></div>
+    <div class="ab-card">
+      <p class="ab-quote">"Every stone holds a geological story millions of years in the making. Our craft is to give it a new chapter — in your space."</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─── PORTFOLIO ─── -->
+<section class="portfolio" id="portfolio">
+  <div class="port-header reveal">
+    <p class="s-label">Portfolio 2026</p>
+    <h2 class="s-title">Selected Works</h2>
+    <div class="divider c"></div>
+    <p style="font-size:.83rem;opacity:.58;font-weight:200;max-width:460px;margin:0 auto;line-height:1.95">Each project is a dialogue between raw earth and refined vision — from Rajasthani quarries to interiors across the globe.</p>
+  </div>
+  <div class="port-grid">
+    <div class="masonry">
+      <!-- 1 -->
+      <div class="gi reveal">
+        <div class="gi-bg" style="height:310px;background:linear-gradient(135deg,#4a3020,#2a1810,#3d2a1a);position:relative;overflow:hidden">
+          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.2" viewBox="0 0 300 310" preserveAspectRatio="none">
+            <rect y="0"   width="300" height="6"  fill="#8b6030" rx="1"/><rect y="10" width="300" height="5"  fill="#6b4820" rx="1"/>
+            <rect y="19"  width="300" height="7"  fill="#9b7040" rx="1"/><rect y="30" width="300" height="5"  fill="#5a3818" rx="1"/>
+            <rect y="39"  width="300" height="8"  fill="#7b5028" rx="1"/><rect y="52" width="300" height="4"  fill="#4a2810" rx="1"/>
+            <rect y="60"  width="300" height="7"  fill="#8b6030" rx="1"/><rect y="72" width="300" height="5"  fill="#6b4820" rx="1"/>
+            <rect y="81"  width="300" height="9"  fill="#9b7040" rx="1"/><rect y="95" width="300" height="4"  fill="#5a3818" rx="1"/>
+            <rect y="103" width="300" height="6"  fill="#7b5028" rx="1"/><rect y="113" width="300" height="8" fill="#4a2810" rx="1"/>
+            <rect y="126" width="300" height="5"  fill="#8b6030" rx="1"/><rect y="135" width="300" height="7" fill="#6b4820" rx="1"/>
+            <rect y="147" width="300" height="5"  fill="#9b7040" rx="1"/><rect y="156" width="300" height="9" fill="#5a3818" rx="1"/>
+            <rect y="170" width="300" height="5"  fill="#7b5028" rx="1"/><rect y="179" width="300" height="7" fill="#4a2810" rx="1"/>
+            <rect y="191" width="300" height="6"  fill="#8b6030" rx="1"/><rect y="201" width="300" height="8" fill="#6b4820" rx="1"/>
+            <rect y="214" width="300" height="5"  fill="#9b7040" rx="1"/><rect y="223" width="300" height="7" fill="#5a3818" rx="1"/>
+            <rect y="234" width="300" height="9"  fill="#7b5028" rx="1"/><rect y="248" width="300" height="5" fill="#4a2810" rx="1"/>
+            <rect y="257" width="300" height="7"  fill="#8b6030" rx="1"/><rect y="269" width="300" height="6" fill="#6b4820" rx="1"/>
+            <rect y="279" width="300" height="8"  fill="#9b7040" rx="1"/><rect y="292" width="300" height="5" fill="#5a3818" rx="1"/>
+            <rect y="301" width="300" height="7"  fill="#7b5028" rx="1"/>
+          </svg>
+        </div>
+        <div class="go"><div><div class="gtag">EXTERIOR</div><div class="gtitle">Multicolour Slates<br/>for Exteriors</div></div></div>
+      </div>
+
+      <!-- 2 -->
+      <div class="gi reveal">
+        <div class="gi-bg" style="height:230px;background:linear-gradient(160deg,#2a1e16,#382010,#1e1a16);position:relative;overflow:hidden">
+          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.17" viewBox="0 0 300 230" preserveAspectRatio="none">
+            <rect y="0"   width="300" height="5"  fill="#7b5028" rx="1"/><rect y="9"   width="300" height="8"  fill="#4a2810" rx="1"/>
+            <rect y="21"  width="300" height="4"  fill="#8b6030" rx="1"/><rect y="29"  width="300" height="7"  fill="#6b4820" rx="1"/>
+            <rect y="40"  width="300" height="5"  fill="#9b7040" rx="1"/><rect y="49"  width="300" height="9"  fill="#5a3818" rx="1"/>
+            <rect y="63"  width="300" height="5"  fill="#7b5028" rx="1"/><rect y="72"  width="300" height="6"  fill="#4a2810" rx="1"/>
+            <rect y="83"  width="300" height="8"  fill="#8b6030" rx="1"/><rect y="96"  width="300" height="5"  fill="#6b4820" rx="1"/>
+            <rect y="105" width="300" height="7"  fill="#9b7040" rx="1"/><rect y="116" width="300" height="5"  fill="#5a3818" rx="1"/>
+            <rect y="125" width="300" height="9"  fill="#7b5028" rx="1"/><rect y="139" width="300" height="5"  fill="#4a2810" rx="1"/>
+            <rect y="148" width="300" height="7"  fill="#8b6030" rx="1"/><rect y="159" width="300" height="6"  fill="#6b4820" rx="1"/>
+            <rect y="169" width="300" height="8"  fill="#9b7040" rx="1"/><rect y="181" width="300" height="5"  fill="#5a3818" rx="1"/>
+            <rect y="190" width="300" height="7"  fill="#7b5028" rx="1"/><rect y="201" width="300" height="9"  fill="#4a2810" rx="1"/>
+            <rect y="215" width="300" height="5"  fill="#8b6030" rx="1"/><rect y="224" width="300" height="4"  fill="#6b4820" rx="1"/>
+          </svg>
+        </div>
+        <div class="go"><div><div class="gtag">INTERIOR</div><div class="gtitle">Multicolour Slates<br/>for Interiors</div></div></div>
+      </div>
+
+      <!-- 3 -->
+      <div class="gi reveal">
+        <div class="gi-bg" style="height:290px;background:linear-gradient(145deg,#6b4820,#4a3010,#7b5828);position:relative;overflow:hidden">
+          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.22" viewBox="0 0 300 290" preserveAspectRatio="none">
+            <rect x="0"   y="0"   width="58" height="38" fill="#8b6830" stroke="#2a1810" stroke-width="2"/>
+            <rect x="62"  y="0"   width="80" height="38" fill="#a07840" stroke="#2a1810" stroke-width="2"/>
+            <rect x="146" y="0"   width="58" height="38" fill="#7a5820" stroke="#2a1810" stroke-width="2"/>
+            <rect x="208" y="0"   width="90" height="38" fill="#9b6830" stroke="#2a1810" stroke-width="2"/>
+            <rect x="0"   y="42"  width="80" height="55" fill="#a07840" stroke="#2a1810" stroke-width="2"/>
+            <rect x="84"  y="42"  width="58" height="55" fill="#8b6830" stroke="#2a1810" stroke-width="2"/>
+            <rect x="146" y="42"  width="90" height="55" fill="#7a5820" stroke="#2a1810" stroke-width="2"/>
+            <rect x="240" y="42"  width="58" height="55" fill="#9b6830" stroke="#2a1810" stroke-width="2"/>
+            <rect x="0"   y="101" width="58" height="38" fill="#7a5820" stroke="#2a1810" stroke-width="2"/>
+            <rect x="62"  y="101" width="90" height="38" fill="#a07840" stroke="#2a1810" stroke-width="2"/>
+            <rect x="156" y="101" width="58" height="38" fill="#8b6830" stroke="#2a1810" stroke-width="2"/>
+            <rect x="218" y="101" width="80" height="38" fill="#9b6830" stroke="#2a1810" stroke-width="2"/>
+            <rect x="0"   y="143" width="80" height="55" fill="#9b6830" stroke="#2a1810" stroke-width="2"/>
+            <rect x="84"  y="143" width="58" height="55" fill="#7a5820" stroke="#2a1810" stroke-width="2"/>
+            <rect x="146" y="143" width="80" height="55" fill="#a07840" stroke="#2a1810" stroke-width="2"/>
+            <rect x="230" y="143" width="68" height="55" fill="#8b6830" stroke="#2a1810" stroke-width="2"/>
+            <rect x="0"   y="202" width="58" height="38" fill="#8b6830" stroke="#2a1810" stroke-width="2"/>
+            <rect x="62"  y="202" width="80" height="38" fill="#9b6830" stroke="#2a1810" stroke-width="2"/>
+            <rect x="146" y="202" width="58" height="38" fill="#a07840" stroke="#2a1810" stroke-width="2"/>
+            <rect x="208" y="202" width="90" height="38" fill="#7a5820" stroke="#2a1810" stroke-width="2"/>
+            <rect x="0"   y="244" width="90" height="44" fill="#7a5820" stroke="#2a1810" stroke-width="2"/>
+            <rect x="94"  y="244" width="58" height="44" fill="#8b6830" stroke="#2a1810" stroke-width="2"/>
+            <rect x="156" y="244" width="80" height="44" fill="#9b6830" stroke="#2a1810" stroke-width="2"/>
+            <rect x="240" y="244" width="58" height="44" fill="#a07840" stroke="#2a1810" stroke-width="2"/>
+          </svg>
+        </div>
+        <div class="go"><div><div class="gtag">FLOORING</div><div class="gtitle">Multicolour Kota<br/>Custom Pathway</div></div></div>
+      </div>
+
+      <!-- 4 — WIDE Pool -->
+      <div class="gi wide reveal">
+        <div class="gi-bg" style="height:340px;background:linear-gradient(135deg,#1a3a38,#0d2420,#152e2a);position:relative;overflow:hidden">
+          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.28" viewBox="0 0 900 340" preserveAspectRatio="none">
+            <defs>
+              <linearGradient id="wg" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#2a9090" stop-opacity=".6"/>
+                <stop offset="1" stop-color="#0a4040" stop-opacity=".9"/>
+              </linearGradient>
+            </defs>
+            <rect width="900" height="340" fill="url(#wg)"/>
+            <rect x="0" y="0" width="900" height="26" fill="#c8a882" opacity=".35"/>
+            <path d="M0 75  Q225 55  450 75  T900 75"  stroke="#5ac0b0" stroke-width="1.5" fill="none" opacity=".4"/>
+            <path d="M0 115 Q225 95  450 115 T900 115" stroke="#5ac0b0" stroke-width="1.5" fill="none" opacity=".3"/>
+            <path d="M0 155 Q225 135 450 155 T900 155" stroke="#5ac0b0" stroke-width="1"   fill="none" opacity=".22"/>
+            <path d="M0 195 Q225 175 450 195 T900 195" stroke="#5ac0b0" stroke-width="1"   fill="none" opacity=".18"/>
+            <rect x="720" y="0" width="180" height="340" fill="#c8a882" opacity=".12"/>
+            <line x1="720" y1="30"  x2="900" y2="30"  stroke="#a87840" stroke-width="1" opacity=".4"/>
+            <line x1="720" y1="80"  x2="900" y2="80"  stroke="#a87840" stroke-width="1" opacity=".4"/>
+            <line x1="720" y1="130" x2="900" y2="130" stroke="#a87840" stroke-width="1" opacity=".4"/>
+            <line x1="720" y1="180" x2="900" y2="180" stroke="#a87840" stroke-width="1" opacity=".4"/>
+            <line x1="720" y1="230" x2="900" y2="230" stroke="#a87840" stroke-width="1" opacity=".4"/>
+            <line x1="720" y1="280" x2="900" y2="280" stroke="#a87840" stroke-width="1" opacity=".4"/>
+            <line x1="760" y1="0"   x2="760" y2="340" stroke="#a87840" stroke-width="1" opacity=".3"/>
+            <line x1="820" y1="0"   x2="820" y2="340" stroke="#a87840" stroke-width="1" opacity=".3"/>
+            <line x1="870" y1="0"   x2="870" y2="340" stroke="#a87840" stroke-width="1" opacity=".3"/>
+          </svg>
+        </div>
+        <div class="go" style="opacity:1;background:linear-gradient(to top,rgba(13,26,24,.95) 0%,rgba(13,26,24,.25) 60%,transparent 100%)">
+          <div><div class="gtag">POOL &amp; DECK</div><div class="gtitle">Teak Sandstone Swimming Pool Coping &amp; Deck</div></div>
+        </div>
+      </div>
+
+      <!-- 5 -->
+      <div class="gi reveal">
+        <div class="gi-bg" style="height:370px;background:linear-gradient(135deg,#3a2810,#1e1406,#5a4020);position:relative;overflow:hidden">
+          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.32" viewBox="0 0 300 370" preserveAspectRatio="none">
+            <defs><radialGradient id="ag" cx="50%" cy="28%" r="50%"><stop offset="0" stop-color="#d4a040" stop-opacity=".9"/><stop offset="1" stop-color="#6a3800" stop-opacity="0"/></radialGradient></defs>
+            <path d="M70 370 L70 145 Q150 25 230 145 L230 370 Z" fill="none" stroke="#c8a882" stroke-width="2"/>
+            <path d="M90 300 L120 215 L150 258 L180 188 L210 238 L210 300 Z" fill="#9b7030" opacity=".5"/>
+            <path d="M90 300 L130 238 L160 198 L190 248 L210 278 L210 300 Z" fill="#c08030" opacity=".3"/>
+            <line x1="90" y1="198" x2="210" y2="198" stroke="#b8913a" stroke-width="1" opacity=".6"/>
+            <line x1="90" y1="238" x2="210" y2="238" stroke="#b8913a" stroke-width="1" opacity=".5"/>
+            <circle cx="150" cy="92" r="28" fill="none" stroke="#c8a882" stroke-width="1" opacity=".4"/>
+            <rect fill="url(#ag)" x="0" y="0" width="300" height="370"/>
+          </svg>
+        </div>
+        <div class="go"><div><div class="gtag">ARTISTIC PANEL</div><div class="gtitle">60-Piece Marble, Limestone &amp; Sandstone — Brass Inlay Mountain Range</div></div></div>
+      </div>
+
+      <!-- 6 -->
+      <div class="gi reveal">
+        <div class="gi-bg" style="height:270px;background:linear-gradient(135deg,#7a5a18,#4a3808,#9b7a20);position:relative;overflow:hidden">
+          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.38" viewBox="0 0 300 270" preserveAspectRatio="none">
+            <rect x="10" y="10" width="280" height="250" fill="none" stroke="#d4a030" stroke-width="3"/>
+            <rect x="18" y="18" width="264" height="234" fill="none" stroke="#b8800a" stroke-width="1"/>
+            <circle cx="10"  cy="10"  r="8" fill="#2a6040" opacity=".85"/>
+            <circle cx="290" cy="10"  r="8" fill="#2a6040" opacity=".85"/>
+            <circle cx="10"  cy="260" r="8" fill="#2a6040" opacity=".85"/>
+            <circle cx="290" cy="260" r="8" fill="#2a6040" opacity=".85"/>
+            <polygon points="50,10 58,18 50,26 42,18" fill="#2a6040" opacity=".8"/>
+            <polygon points="90,10 98,18 90,26 82,18" fill="#c0300a" opacity=".7"/>
+            <polygon points="130,10 138,18 130,26 122,18" fill="#2a6040" opacity=".8"/>
+            <polygon points="170,10 178,18 170,26 162,18" fill="#c0300a" opacity=".7"/>
+            <polygon points="210,10 218,18 210,26 202,18" fill="#2a6040" opacity=".8"/>
+            <polygon points="250,10 258,18 250,26 242,18" fill="#c0300a" opacity=".7"/>
+          </svg>
+        </div>
+        <div class="go"><div><div class="gtag">SEMI-PRECIOUS INLAY</div><div class="gtitle">Jaisalmer Yellow Stone + Semi-Precious Stones Inlay</div></div></div>
+      </div>
+
+      <!-- 7 -->
+      <div class="gi reveal">
+        <div class="gi-bg" style="height:340px;background:linear-gradient(145deg,#1a1a1a,#2d2d2d,#0d0d0d);position:relative;overflow:hidden">
+          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.5" viewBox="0 0 300 340" preserveAspectRatio="none">
+            <rect x="40" y="40" width="220" height="260" fill="#e8e4dc" opacity=".12" stroke="#1a1a1a" stroke-width="8"/>
+            <ellipse cx="150" cy="115" rx="18" ry="22" fill="#0d0d0d" opacity=".7"/>
+            <path d="M150 137 Q140 175 125 195 Q118 210 110 225" stroke="#0d0d0d" stroke-width="10" fill="none" opacity=".7"/>
+            <path d="M150 137 Q165 170 178 190 Q185 205 195 220" stroke="#0d0d0d" stroke-width="8" fill="none" opacity=".7"/>
+            <path d="M125 170 Q115 160 100 155" stroke="#0d0d0d" stroke-width="8" fill="none" opacity=".6"/>
+            <path d="M175 170 Q182 157 195 153" stroke="#0d0d0d" stroke-width="8" fill="none" opacity=".6"/>
+            <rect x="20" y="5" width="260" height="10" fill="#c0b0a0" opacity=".4" rx="2"/>
+          </svg>
+        </div>
+        <div class="go"><div><div class="gtag">INLAY ART</div><div class="gtitle">Jet Black Granite Artwork on White Marble</div></div></div>
+      </div>
+
+      <!-- 8 -->
+      <div class="gi reveal">
+        <div class="gi-bg" style="height:330px;background:linear-gradient(135deg,#0d1838,#060e20,#1a2845);position:relative;overflow:hidden">
+          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.48" viewBox="0 0 300 330" preserveAspectRatio="none">
+            <defs><radialGradient id="cg2" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff" stop-opacity=".9"/><stop offset="40%" stop-color="#1a40a0" stop-opacity=".3"/><stop offset="100%" stop-color="#0a1838" stop-opacity="0"/></radialGradient></defs>
+            <rect x="30" y="25" width="240" height="280" fill="none" stroke="#8090c0" stroke-width="1"/>
+            <circle cx="150" cy="165" r="108" fill="none" stroke="#8090c0" stroke-width="1" opacity=".5"/>
+            <circle cx="150" cy="165" r="78"  fill="none" stroke="#a0b0d0" stroke-width="1" opacity=".4"/>
+            <circle cx="150" cy="165" r="52"  fill="none" stroke="#c0c8e0" stroke-width="1" opacity=".5"/>
+            <circle cx="150" cy="165" r="28"  fill="none" stroke="#d8dcea" stroke-width="1" opacity=".6"/>
+            <line x1="150" y1="57"  x2="150" y2="273" stroke="#8090c0" stroke-width="1" opacity=".3"/>
+            <line x1="42"  y1="165" x2="258" y2="165" stroke="#8090c0" stroke-width="1" opacity=".3"/>
+            <line x1="74"  y1="89"  x2="226" y2="241" stroke="#8090c0" stroke-width="1" opacity=".3"/>
+            <line x1="226" y1="89"  x2="74"  y2="241" stroke="#8090c0" stroke-width="1" opacity=".3"/>
+            <circle cx="150" cy="165" r="10" fill="url(#cg2)"/>
+          </svg>
+        </div>
+        <div class="go"><div><div class="gtag">SEMI-PRECIOUS INLAY</div><div class="gtitle">Lapis Lazuli on Marble</div></div></div>
+      </div>
+
+      <!-- 9 -->
+      <div class="gi reveal">
+        <div class="gi-bg" style="height:290px;background:linear-gradient(155deg,#0a2820,#061810,#0d3028);position:relative;overflow:hidden">
+          <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.3" viewBox="0 0 300 290" preserveAspectRatio="none">
+            <defs><pattern id="mp" x="0" y="0" width="18" height="18" patternUnits="userSpaceOnUse"><rect width="16" height="16" fill="#1a6040" rx="1"/></pattern></defs>
+            <rect width="300" height="290" fill="url(#mp)"/>
+            <path d="M0 175 Q75 155 150 175 T300 175" stroke="#40c090" stroke-width="2"   fill="none" opacity=".4"/>
+            <path d="M0 195 Q75 175 150 195 T300 195" stroke="#40c090" stroke-width="1.5" fill="none" opacity=".3"/>
+            <path d="M0 215 Q75 195 150 215 T300 215" stroke="#40c090" stroke-width="1"   fill="none" opacity=".2"/>
+          </svg>
+        </div>
+        <div class="go"><div><div class="gtag">POOL</div><div class="gtitle">Green Marble Mosaic Swimming Pool</div></div></div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─── SERVICES ─── -->
+<section class="services pad" id="services">
+  <div style="max-width:520px;margin-bottom:3.5rem" class="reveal">
+    <p class="s-label">What We Do</p>
+    <h2 class="s-title">Stone Solutions<br/>for Every Vision</h2>
+    <div class="divider"></div>
+  </div>
+  <div class="srv-grid">
+    <div class="srv-card reveal"><div class="srv-num">01</div><div class="srv-name">POOLS &amp; WATER FEATURES</div><div class="srv-desc">Teak sandstone coping, green marble mosaics, and bespoke pool decking. Surfaces that age beautifully in water and sun.</div></div>
+    <div class="srv-card reveal"><div class="srv-num">02</div><div class="srv-name">WALL CLADDING</div><div class="srv-desc">Multicolour slate facades for exteriors and interiors. Textural depth from Rajasthan's quarries — no two installations alike.</div></div>
+    <div class="srv-card reveal"><div class="srv-num">03</div><div class="srv-name">ARTISTIC PANELS &amp; INLAY</div><div class="srv-desc">Custom stone art panels: jet-black granite on white marble, lapis lazuli inlay, semi-precious compositions, brass inlay work.</div></div>
+    <div class="srv-card reveal"><div class="srv-num">04</div><div class="srv-name">FLOORING &amp; PATHWAYS</div><div class="srv-desc">Multicolour Kota stone pathways, custom mosaic floors, and large-format slab flooring for residential and commercial spaces.</div></div>
+    <div class="srv-card reveal"><div class="srv-num">05</div><div class="srv-name">TABLETOPS &amp; FURNITURE</div><div class="srv-desc">Natural stone tabletops in marble, limestone, and sandstone — finished to your specification, from raw to polished to honed.</div></div>
+    <div class="srv-card reveal"><div class="srv-num">06</div><div class="srv-name">CONCEPT TO EXECUTION</div><div class="srv-desc">We work directly with architects and interior designers globally, guiding material selection, sourcing, and installation.</div></div>
+  </div>
+</section>
+
+<!-- ─── CONSULTANT ─── -->
+<section class="consultant" id="consultant">
+  <div class="con-img">
+    <div class="con-portrait">
+      <div class="con-portrait-frame">
+        <svg width="200" height="240" viewBox="0 0 200 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="portlg" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#5a3820" stop-opacity=".8"/>
+              <stop offset="100%" stop-color="#2a1810" stop-opacity=".4"/>
+            </linearGradient>
+          </defs>
+          <rect width="200" height="240" fill="url(#portlg)" rx="2"/>
+          <!-- Stylised portrait -->
+          <ellipse cx="100" cy="78" rx="36" ry="40" fill="#6a4030" opacity=".9"/>
+          <ellipse cx="100" cy="88" rx="30" ry="22" fill="#3a2018" opacity=".85"/>
+          <path d="M52 240 Q58 165 78 148 Q89 142 100 140 Q111 142 122 148 Q142 165 148 240 Z" fill="#4a3020" opacity=".9"/>
+          <rect x="52" y="234" width="96" height="6" fill="#b8913a" opacity=".4" rx="1"/>
+          <!-- Decorative frame lines -->
+          <rect x="8" y="8" width="184" height="224" stroke="rgba(200,168,130,0.2)" stroke-width=".8" fill="none" rx="1"/>
+        </svg>
+      </div>
+      <div class="con-name">Kush Sharma</div>
+      <div class="con-role">CONSULTANT · TERRACORE STONES</div>
+    </div>
+  </div>
+  <div class="con-text reveal">
+    <p class="s-label">The Craftsman</p>
+    <h2 class="s-title">15 Years of Stone.<br/><em>One Standard: Excellence.</em></h2>
+    <div class="divider"></div>
+    <p>Kush Sharma brings over 15 years of experience in the natural stone trade across India, with deep expertise in sourcing from regions such as Rajasthan. Through Terracore India, he focuses on high-quality sandstones, limestones, and marbles.</p>
+    <p>His work spans both residential and commercial projects, delivering customised stone solutions for pools, wall cladding, artistic panels, flooring, and tabletops.</p>
+    <p>He works closely with architects and interior designers globally, supporting projects from concept to execution. His portfolio includes completed work across India and Mauritius.</p>
+    <div class="badges">
+      <span class="badge">RAJASTHAN SOURCING</span>
+      <span class="badge">INDIA &amp; MAURITIUS</span>
+      <span class="badge">RESIDENTIAL</span>
+      <span class="badge">COMMERCIAL</span>
+      <span class="badge">CUSTOM SOLUTIONS</span>
+    </div>
+  </div>
+</section>
+
+<!-- ─── SOCIAL SECTION ─── -->
+<section class="social-section" id="social">
+  <div class="social-inner">
+    <div class="social-header reveal">
+      <div>
+        <p class="s-label">Find Us Online</p>
+        <h2 class="s-title">Connect &amp; Follow</h2>
+        <div class="divider"></div>
+      </div>
+      <p style="font-size:.8rem;opacity:.5;font-weight:200;max-width:240px;text-align:right;line-height:1.9">Follow our work, send a message, or join the conversation.</p>
+    </div>
+
+    <div class="social-grid">
+
+      <!-- INSTAGRAM -->
+      <a class="social-card ig" id="ig-card" href="https://instagram.com/terracorestones" target="_blank" rel="noopener">
+        <div class="social-arrow"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></div>
+        <!-- Instagram icon -->
+        <svg class="social-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="iglg" x1="0" y1="1" x2="1" y2="0">
+              <stop offset="0%"  stop-color="#f9ce34"/>
+              <stop offset="35%" stop-color="#ee2a7b"/>
+              <stop offset="100%" stop-color="#6228d7"/>
+            </linearGradient>
+          </defs>
+          <rect x="6" y="6" width="30" height="30" rx="9" stroke="url(#iglg)" stroke-width="1.8" fill="none"/>
+          <circle cx="21" cy="21" r="7.5" stroke="url(#iglg)" stroke-width="1.5" fill="none"/>
+          <circle cx="29.5" cy="12.5" r="1.8" fill="url(#iglg)"/>
+        </svg>
+        <div class="social-platform">INSTAGRAM</div>
+        <div class="social-handle" id="ig-handle">@terracorestones</div>
+        <div class="social-desc">Stone installations, project reveals &amp; behind-the-scenes from the quarry to your space.</div>
+      </a>
+
+      <!-- WHATSAPP -->
+      <a class="social-card wa" id="wa-card" href="https://wa.me/917742905658" target="_blank" rel="noopener">
+        <div class="social-arrow"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></div>
+        <!-- WhatsApp icon -->
+        <svg class="social-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="21" cy="21" r="15" stroke="#25d366" stroke-width="1.8" fill="none"/>
+          <path d="M28.5 24.8c-.3-.15-1.8-.9-2.1-1-.3-.1-.5-.15-.7.15-.2.3-.8 1-1 1.2-.2.2-.35.22-.65.08-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.48-1.75-1.65-2.05-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.18.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.7-1.7-.96-2.32-.25-.6-.5-.52-.7-.53h-.6c-.2 0-.52.07-.8.37-.27.3-1.02 1-1.02 2.43s1.05 2.82 1.2 3.02c.15.2 2.05 3.14 4.98 4.4.7.3 1.24.48 1.67.62.7.22 1.34.19 1.84.11.56-.08 1.73-.7 1.98-1.38.25-.68.25-1.26.17-1.38-.08-.12-.27-.2-.57-.34z" fill="#25d366"/>
+          <path d="M21 11.5A9.5 9.5 0 0011.5 21a9.45 9.45 0 001.4 4.97l-1.47 4.35 4.48-1.43A9.5 9.5 0 1021 11.5z" stroke="#25d366" stroke-width="1.2" fill="none"/>
+        </svg>
+        <div class="social-platform">WHATSAPP</div>
+        <div class="social-handle" id="wa-handle">+91 77429 05658</div>
+        <div class="social-desc">Chat directly with Kush Sharma for enquiries, quotes, and project consultations.</div>
+      </a>
+
+      <!-- THREADS -->
+      <a class="social-card th" id="th-card" href="https://threads.net/@terracorestones" target="_blank" rel="noopener">
+        <div class="social-arrow"><svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 10L10 2M10 2H4M10 2v6"/></svg></div>
+        <!-- Threads icon -->
+        <svg class="social-icon" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="21" cy="21" r="15" stroke="#c0c0c0" stroke-width="1.5" fill="none"/>
+          <path d="M26 17.5c-.8-.6-1.8-.95-2.9-1C20.6 16.4 18 18.4 18 21c0 2.8 2.2 4.5 4.5 4.5 1.4 0 2.6-.5 3.4-1.4.8-.9 1.1-2.1 1.1-3.4" stroke="#d0d0d0" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M27 15c0 3.5-1 7-6 8" stroke="#d0d0d0" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <circle cx="21" cy="21" r="2.5" stroke="#d0d0d0" stroke-width="1.2" fill="none"/>
+        </svg>
+        <div class="social-platform">THREADS</div>
+        <div class="social-handle" id="th-handle">@terracorestones</div>
+        <div class="social-desc">Thoughts on natural stone, design trends, and conversations with the architecture community.</div>
+      </a>
+
+    </div>
+
+    <!-- EDIT BAR -->
+    <div class="social-edit-bar reveal">
+      <p>Update your social media links below:</p>
+      <button class="edit-btn" onclick="openModal()">✦ EDIT SOCIAL LINKS</button>
+    </div>
+  </div>
+</section>
+
+<!-- ─── CONTACT ─── -->
+<section class="contact" id="contact">
+  <div class="contact-inner reveal">
+    <!-- Contact logo mark — arch -->
+    <svg style="width:52px;height:58px;margin:0 auto 1.8rem;display:block" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="clg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0d8a0"/><stop offset="100%" stop-color="#8a6028"/></linearGradient></defs>
+      <path d="M4 90 L4 40 Q4 4 20 4 Q36 4 36 40 L36 90" stroke="url(#clg)" stroke-width=".8" fill="none" stroke-linecap="round" opacity=".3" transform="scale(1 .47)"/>
+      <path d="M6 38 L6 18 Q6 6 20 6 Q34 6 34 18 L34 38" stroke="url(#clg)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+      <path d="M11 38 L11 19.5 Q11 11 20 11 Q29 11 29 19.5 L29 38" stroke="url(#clg)" stroke-width=".7" fill="none" opacity=".4" stroke-linecap="round"/>
+      <line x1="3"  y1="38" x2="37" y2="38" stroke="url(#clg)" stroke-width="1.4" stroke-linecap="round"/>
+      <line x1="6"  y1="41.5" x2="34" y2="41.5" stroke="url(#clg)" stroke-width=".9" opacity=".5"  stroke-linecap="round"/>
+      <line x1="10" y1="44"   x2="30" y2="44"   stroke="url(#clg)" stroke-width=".5" opacity=".25" stroke-linecap="round"/>
+      <circle cx="20" cy="6" r="2.2" fill="url(#clg)"/>
+      <circle cx="20" cy="6" r=".9"  fill="#fff8e8"/>
+    </svg>
+    <p class="s-label" style="letter-spacing:.42em;margin-bottom:1rem">FOR COLLABORATION &amp; FURTHER QUERIES</p>
+    <h2>Get in Touch</h2>
+    <div class="divider c"></div>
+    <p class="contact-sub">Whether you're an architect, interior designer, or private client — we'd love to discuss your next project.</p>
+    <div class="contact-links">
+      <a class="clink" href="mailto:terrcaorestones@gmail.com">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+        terrcaorestones@gmail.com
+      </a>
+      <a class="clink" href="tel:+917742905658">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14v2.92z"/></svg>
+        +91 77429 05658
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="fl">
+    <svg width="28" height="30" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <defs><linearGradient id="flg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#dfc48a"/><stop offset="100%" stop-color="#8a6028"/></linearGradient></defs>
+      <path d="M6 38 L6 18 Q6 6 20 6 Q34 6 34 18 L34 38" stroke="url(#flg)" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".7"/>
+      <path d="M11 38 L11 19.5 Q11 11 20 11 Q29 11 29 19.5 L29 38" stroke="url(#flg)" stroke-width=".7" fill="none" opacity=".3" stroke-linecap="round"/>
+      <line x1="3"  y1="38" x2="37" y2="38" stroke="url(#flg)" stroke-width="1.4" stroke-linecap="round" opacity=".7"/>
+      <line x1="6"  y1="41.5" x2="34" y2="41.5" stroke="url(#flg)" stroke-width=".8" opacity=".4" stroke-linecap="round"/>
+      <circle cx="20" cy="6" r="1.8" fill="url(#flg)" opacity=".7"/>
+    </svg>
+    <span style="font-size:.62rem;letter-spacing:.2em;opacity:.45;font-weight:300">TERRACORE STONES</span>
+  </div>
+  <p>© 2026 Terracore Stones · Terracore India · All rights reserved</p>
+  <p style="font-size:.58rem">Natural Stones for Interior Design &amp; Architecture</p>
+</footer>
+
+<!-- ─── SOCIAL EDIT MODAL ─── -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h3>Edit Social Links</h3>
+    <p class="modal-sub">UPDATE YOUR HANDLES &amp; NUMBERS</p>
+    <div class="field-group">
+      <label>INSTAGRAM HANDLE</label>
+      <input type="text" id="f-ig" placeholder="@yourusername" value="@terracorestones"/>
+    </div>
+    <div class="field-group">
+      <label>INSTAGRAM URL</label>
+      <input type="text" id="f-ig-url" placeholder="https://instagram.com/..." value="https://instagram.com/terracorestones"/>
+    </div>
+    <div class="field-group">
+      <label>WHATSAPP NUMBER (with country code)</label>
+      <input type="text" id="f-wa" placeholder="+91 99999 99999" value="+91 77429 05658"/>
+    </div>
+    <div class="field-group">
+      <label>WHATSAPP NUMBER (digits only, no +)</label>
+      <input type="text" id="f-wa-num" placeholder="917742905658" value="917742905658"/>
+    </div>
+    <div class="field-group">
+      <label>THREADS HANDLE</label>
+      <input type="text" id="f-th" placeholder="@yourusername" value="@terracorestones"/>
+    </div>
+    <div class="field-group">
+      <label>THREADS URL</label>
+      <input type="text" id="f-th-url" placeholder="https://threads.net/@..." value="https://threads.net/@terracorestones"/>
+    </div>
+    <button class="modal-save" onclick="saveLinks()">SAVE CHANGES</button>
+  </div>
+</div>
+
+<script>
+  /* Nav scroll */
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 55));
+
+  /* Scroll reveal */
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }});
+  }, { threshold: 0.1, rootMargin:'0px 0px -50px 0px' });
+  document.querySelectorAll('.reveal').forEach(r => obs.observe(r));
+
+  /* Modal */
+  function openModal() { document.getElementById('modal').classList.add('open'); }
+  function closeModal() { document.getElementById('modal').classList.remove('open'); }
+  document.getElementById('modal').addEventListener('click', e => { if (e.target === e.currentTarget) closeModal(); });
+
+  function saveLinks() {
+    const igHandle = document.getElementById('f-ig').value.trim();
+    const igUrl    = document.getElementById('f-ig-url').value.trim();
+    const waLabel  = document.getElementById('f-wa').value.trim();
+    const waNum    = document.getElementById('f-wa-num').value.trim().replace(/\D/g,'');
+    const thHandle = document.getElementById('f-th').value.trim();
+    const thUrl    = document.getElementById('f-th-url').value.trim();
+
+    document.getElementById('ig-handle').textContent = igHandle;
+    document.getElementById('ig-card').href = igUrl || '#';
+
+    document.getElementById('wa-handle').textContent = waLabel;
+    document.getElementById('wa-card').href = waNum ? `https://wa.me/${waNum}` : '#';
+
+    document.getElementById('th-handle').textContent = thHandle;
+    document.getElementById('th-card').href = thUrl || '#';
+
+    closeModal();
+  }
+</script>
+</body>
+</html>
