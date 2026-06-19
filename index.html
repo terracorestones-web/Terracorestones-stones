@@ -30,12 +30,9 @@
     }
     nav.scrolled { background:rgba(19,15,12,.97); border-bottom:1px solid rgba(200,168,130,.08); }
 
-    /* ─── ARTISTIC LOGO ─── */
-    .logo-mark { display:block; }
-    .logo-wrap { display:flex; align-items:center; gap:1rem; text-decoration:none; }
-    .logo-text-block { display:flex; flex-direction:column; gap:2px; }
-    .logo-text-block .l1 { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:1.05rem; letter-spacing:.34em; color:var(--cream); line-height:1; }
-    .logo-text-block .l2 { font-family:'Jost',sans-serif; font-weight:200; font-size:.5rem; letter-spacing:.55em; color:var(--sand); }
+    /* ─── LOGO ─── */
+    .logo-wrap { display:flex; align-items:center; text-decoration:none; }
+    .nav-logo-img { height:50px; width:auto; display:block; }
 
     .nav-links { display:flex; gap:2.4rem; list-style:none; }
     .nav-links a { color:var(--cream); text-decoration:none; font-size:.68rem; letter-spacing:.22em; font-weight:300; opacity:.75; transition:opacity .2s,color .2s; }
@@ -58,18 +55,10 @@
     .hero-overlay { position:absolute; inset:0; background:radial-gradient(ellipse at center,rgba(0,0,0,0) 25%,rgba(0,0,0,.6) 100%); }
     .hero-content { position:relative; z-index:2; }
 
-    /* Hero artistic logo — large */
-    .hero-logo { margin-bottom:2rem; display:inline-block; animation:fadeUp .9s ease both; }
+    /* Hero logo image */
+    .hero-logo-img { width:clamp(220px,34vw,360px); height:auto; display:block; margin:0 auto; animation:fadeUp .9s ease both; }
 
-    .hero h1 {
-      font-family:'Cormorant Garamond',serif; font-weight:300;
-      font-size:clamp(3.2rem,7.5vw,6.8rem); letter-spacing:.22em; color:var(--cream);
-      animation:fadeUp .9s .12s ease both;
-    }
-    .hero-rule { display:flex; align-items:center; gap:1.1rem; margin-top:.4rem; animation:fadeUp .9s .22s ease both; justify-content:center; }
-    .hero-rule .ln { width:48px; height:1px; background:var(--sand); }
-    .hero-rule span { font-size:.62rem; letter-spacing:.42em; color:var(--sand); font-weight:300; }
-    .hero-tagline { font-size:.85rem; letter-spacing:.1em; font-weight:200; max-width:440px; margin:2rem auto 0; line-height:2.1; opacity:.72; animation:fadeUp .9s .32s ease both; }
+    .hero-tagline { font-size:.85rem; letter-spacing:.1em; font-weight:200; max-width:440px; margin:2.2rem auto 0; line-height:2.1; opacity:.72; animation:fadeUp .9s .32s ease both; }
     .hero-cta { display:inline-block; margin-top:2.5rem; border:1px solid var(--sand); color:var(--sand); padding:.82rem 2.6rem; font-size:.65rem; letter-spacing:.32em; text-decoration:none; font-weight:300; transition:background .3s,color .3s; animation:fadeUp .9s .44s ease both; }
     .hero-cta:hover { background:var(--sand); color:var(--stone); }
     .hero-scroll { position:absolute; bottom:2.2rem; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:.5rem; opacity:.45; animation:fadeUp .9s .6s ease both; }
@@ -211,6 +200,7 @@
     }
     .contact::before { content:''; position:absolute; inset:0; background:repeating-linear-gradient(-18deg,transparent 0,rgba(200,168,130,.04) 1px,transparent 2px,transparent 90px); }
     .contact-inner { position:relative; z-index:1; max-width:680px; margin:0 auto; }
+    .contact-logo-img { width:120px; height:auto; display:block; margin:0 auto 1.8rem; opacity:.92; }
     .contact h2 { font-family:'Cormorant Garamond',serif; font-weight:300; font-size:clamp(2.4rem,5vw,4rem); letter-spacing:.1em; margin-bottom:.9rem; }
     .contact-sub { font-size:.8rem; letter-spacing:.1em; opacity:.65; font-weight:200; margin-bottom:2.8rem; }
     .contact-links { display:flex; gap:1.2rem; justify-content:center; flex-wrap:wrap; }
@@ -221,6 +211,7 @@
     /* ─── FOOTER ─── */
     footer { background:#0a0806; padding:2rem 4rem; display:flex; align-items:center; justify-content:space-between; border-top:1px solid rgba(200,168,130,.08); }
     footer .fl { display:flex; align-items:center; gap:.8rem; }
+    .footer-logo-img { height:38px; width:auto; display:block; opacity:.8; }
     footer p { font-size:.6rem; letter-spacing:.18em; opacity:.38; }
 
     /* ─── ANIMATIONS ─── */
@@ -235,6 +226,7 @@
     /* ─── RESPONSIVE ─── */
     @media(max-width:900px){
       nav{padding:1rem 1.6rem;} .nav-links{display:none;}
+      .nav-logo-img{height:42px;}
       .pad{padding:4rem 1.6rem;}
       .about{grid-template-columns:1fr;gap:3rem;} .about-visual{display:none;}
       .srv-grid{grid-template-columns:1fr;}
@@ -251,29 +243,7 @@
 <!-- ─── NAV ─── -->
 <nav id="nav">
   <a class="logo-wrap" href="#hero">
-    <!-- LOGO MARK: T-arch monogram — stone arch with layered strata base -->
-    <svg class="logo-mark" width="40" height="44" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="nlg" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%"   stop-color="#dfc48a"/>
-          <stop offset="100%" stop-color="#9a7038"/>
-        </linearGradient>
-      </defs>
-      <!-- Arch — gateway / portal shape suggesting global reach -->
-      <path d="M6 38 L6 18 Q6 6 20 6 Q34 6 34 18 L34 38" stroke="url(#nlg)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-      <!-- Inner arch echo — depth layer -->
-      <path d="M11 38 L11 19.5 Q11 11 20 11 Q29 11 29 19.5 L29 38" stroke="url(#nlg)" stroke-width=".7" fill="none" opacity=".45" stroke-linecap="round"/>
-      <!-- Strata base lines — 3 geological layers -->
-      <line x1="3"  y1="38" x2="37" y2="38" stroke="url(#nlg)" stroke-width="1.4" stroke-linecap="round"/>
-      <line x1="6"  y1="41.5" x2="34" y2="41.5" stroke="url(#nlg)" stroke-width=".9" opacity=".55" stroke-linecap="round"/>
-      <line x1="10" y1="44"   x2="30" y2="44"   stroke="url(#nlg)" stroke-width=".5" opacity=".28" stroke-linecap="round"/>
-      <!-- Crown accent dot — the keystone -->
-      <circle cx="20" cy="6" r="2" fill="url(#nlg)"/>
-    </svg>
-    <div class="logo-text-block">
-      <span class="l1">TERRACORE</span>
-      <span class="l2">STONES</span>
-    </div>
+    <img class="nav-logo-img" src="logo.png" alt="Terracore Stones"/>
   </a>
   <ul class="nav-links">
     <li><a href="#portfolio">Portfolio</a></li>
@@ -289,45 +259,7 @@
   <div class="hero-bg"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <!-- HERO ARTISTIC LOGO -->
-    <div class="hero-logo">
-      <!-- HERO LOGO MARK: large arch — keystone / gateway / strata -->
-      <svg width="96" height="104" viewBox="0 0 96 104" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="hlg" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stop-color="#f0d8a0"/>
-            <stop offset="55%"  stop-color="#c8a060"/>
-            <stop offset="100%" stop-color="#8a6028"/>
-          </linearGradient>
-          <linearGradient id="hlg2" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%"   stop-color="#dfc48a" stop-opacity=".5"/>
-            <stop offset="100%" stop-color="#9a7038" stop-opacity=".15"/>
-          </linearGradient>
-          <filter id="hglow">
-            <feGaussianBlur stdDeviation="2" result="b"/>
-            <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
-          </filter>
-        </defs>
-        <!-- Outermost ghost arch — atmosphere -->
-        <path d="M4 90 L4 40 Q4 4 48 4 Q92 4 92 40 L92 90" stroke="url(#hlg2)" stroke-width="1" fill="none" stroke-linecap="round"/>
-        <!-- Main arch -->
-        <path d="M12 90 L12 42 Q12 14 48 14 Q84 14 84 42 L84 90" stroke="url(#hlg)" stroke-width="2" fill="none" stroke-linecap="round" filter="url(#hglow)"/>
-        <!-- Inner arch echo -->
-        <path d="M22 90 L22 44.5 Q22 24 48 24 Q74 24 74 44.5 L74 90" stroke="url(#hlg)" stroke-width=".9" fill="none" opacity=".4" stroke-linecap="round"/>
-        <!-- Strata base — three geological layers -->
-        <line x1="6"  y1="90"  x2="90" y2="90"  stroke="url(#hlg)" stroke-width="2"   stroke-linecap="round"/>
-        <line x1="12" y1="96"  x2="84" y2="96"  stroke="url(#hlg)" stroke-width="1.2" opacity=".5"  stroke-linecap="round"/>
-        <line x1="22" y1="101" x2="74" y2="101" stroke="url(#hlg)" stroke-width=".7"  opacity=".25" stroke-linecap="round"/>
-        <!-- Keystone crown dot -->
-        <circle cx="48" cy="14" r="4" fill="url(#hlg)" filter="url(#hglow)"/>
-        <circle cx="48" cy="14" r="1.6" fill="#fff8e8"/>
-      </svg>
-    </div>
-
-    <h1>TERRACORE</h1>
-    <div class="hero-rule">
-      <span class="ln"></span><span>STONES</span><span class="ln"></span>
-    </div>
+    <img class="hero-logo-img" src="logo.png" alt="Terracore Stones"/>
     <p class="hero-tagline">Natural Stones for Interior Design &amp; Architecture.<br/>Sourced from Rajasthan. Crafted for the world.</p>
     <a href="#portfolio" class="hero-cta">VIEW PORTFOLIO</a>
   </div>
@@ -709,26 +641,15 @@
 <!-- ─── CONTACT ─── -->
 <section class="contact" id="contact">
   <div class="contact-inner reveal">
-    <!-- Contact logo mark — arch -->
-    <svg style="width:52px;height:58px;margin:0 auto 1.8rem;display:block" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs><linearGradient id="clg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#f0d8a0"/><stop offset="100%" stop-color="#8a6028"/></linearGradient></defs>
-      <path d="M4 90 L4 40 Q4 4 20 4 Q36 4 36 40 L36 90" stroke="url(#clg)" stroke-width=".8" fill="none" stroke-linecap="round" opacity=".3" transform="scale(1 .47)"/>
-      <path d="M6 38 L6 18 Q6 6 20 6 Q34 6 34 18 L34 38" stroke="url(#clg)" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-      <path d="M11 38 L11 19.5 Q11 11 20 11 Q29 11 29 19.5 L29 38" stroke="url(#clg)" stroke-width=".7" fill="none" opacity=".4" stroke-linecap="round"/>
-      <line x1="3"  y1="38" x2="37" y2="38" stroke="url(#clg)" stroke-width="1.4" stroke-linecap="round"/>
-      <line x1="6"  y1="41.5" x2="34" y2="41.5" stroke="url(#clg)" stroke-width=".9" opacity=".5"  stroke-linecap="round"/>
-      <line x1="10" y1="44"   x2="30" y2="44"   stroke="url(#clg)" stroke-width=".5" opacity=".25" stroke-linecap="round"/>
-      <circle cx="20" cy="6" r="2.2" fill="url(#clg)"/>
-      <circle cx="20" cy="6" r=".9"  fill="#fff8e8"/>
-    </svg>
+    <img class="contact-logo-img" src="logo.png" alt="Terracore Stones"/>
     <p class="s-label" style="letter-spacing:.42em;margin-bottom:1rem">FOR COLLABORATION &amp; FURTHER QUERIES</p>
     <h2>Get in Touch</h2>
     <div class="divider c"></div>
     <p class="contact-sub">Whether you're an architect, interior designer, or private client — we'd love to discuss your next project.</p>
     <div class="contact-links">
-      <a class="clink" href="mailto:terrcaorestones@gmail.com">
+      <a class="clink" href="mailto:terracorestones@gmail.com">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
-        terrcaorestones@gmail.com
+        terracorestones@gmail.com
       </a>
       <a class="clink" href="tel:+917742905658">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 01.01 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 14v2.92z"/></svg>
@@ -741,17 +662,9 @@
 <!-- ─── FOOTER ─── -->
 <footer>
   <div class="fl">
-    <svg width="28" height="30" viewBox="0 0 40 44" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <defs><linearGradient id="flg" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#dfc48a"/><stop offset="100%" stop-color="#8a6028"/></linearGradient></defs>
-      <path d="M6 38 L6 18 Q6 6 20 6 Q34 6 34 18 L34 38" stroke="url(#flg)" stroke-width="1.6" fill="none" stroke-linecap="round" opacity=".7"/>
-      <path d="M11 38 L11 19.5 Q11 11 20 11 Q29 11 29 19.5 L29 38" stroke="url(#flg)" stroke-width=".7" fill="none" opacity=".3" stroke-linecap="round"/>
-      <line x1="3"  y1="38" x2="37" y2="38" stroke="url(#flg)" stroke-width="1.4" stroke-linecap="round" opacity=".7"/>
-      <line x1="6"  y1="41.5" x2="34" y2="41.5" stroke="url(#flg)" stroke-width=".8" opacity=".4" stroke-linecap="round"/>
-      <circle cx="20" cy="6" r="1.8" fill="url(#flg)" opacity=".7"/>
-    </svg>
-    <span style="font-size:.62rem;letter-spacing:.2em;opacity:.45;font-weight:300">TERRACORE STONES</span>
+    <img class="footer-logo-img" src="logo.png" alt="Terracore Stones"/>
   </div>
-  <p>© 2026 Terracore Stones · Terracore India · All rights reserved</p>
+  <p>©️ 2026 Terracore Stones · Terracore India · All rights reserved</p>
   <p style="font-size:.58rem">Natural Stones for Interior Design &amp; Architecture</p>
 </footer>
 
