@@ -1,0 +1,23 @@
+# AI crawler permissions for terracorestones.com
+# This file tells AI engines which parts of the site they may access.
+
+User-agent: *
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /

@@ -1,0 +1,13 @@
+{
+  "name": "Terracore Stones",
+  "description": "Terracore Stones is your sourcing partner inside India for marble, granite, limestone, basalt, and custom stone. We handle procurement, on-ground QA, and export logistics for architects and developers. No markup on material.",
+  "url": "https://terracorestones.com",
+  "products": [
+    {
+      "name": "Stone Sourcing",
+      "description": "Source marble, granite, limestone, basalt, and custom stone from India with on-ground QA and export logistics.",
+      "url": "https://terracorestones.com"
+    }
+  ],
+  "engines_covered": ["ChatGPT", "Claude", "Perplexity", "Gemini"]
+}

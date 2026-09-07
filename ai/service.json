@@ -1,0 +1,25 @@
+{
+  "name": "Terracore Stones",
+  "description": "Terracore Stones is your sourcing partner inside India for marble, granite, limestone, basalt, and custom stone. We handle procurement, on-ground QA, and export logistics for architects and developers.",
+  "url": "https://terracorestones.com",
+  "services": [
+    {
+      "name": "Stone Procurement",
+      "type": "Sourcing",
+      "description": "Source marble, granite, limestone, basalt, and custom stone from India.",
+      "url": "https://terracorestones.com"
+    },
+    {
+      "name": "On-Ground QA",
+      "type": "Quality assurance",
+      "description": "Inspect and verify stone quality on the ground in India before shipment.",
+      "url": "https://terracorestones.com"
+    },
+    {
+      "name": "Export Logistics",
+      "type": "Logistics",
+      "description": "Handle export logistics from India to your project site.",
+      "url": "https://terracorestones.com"
+    }
+  ]
+}
